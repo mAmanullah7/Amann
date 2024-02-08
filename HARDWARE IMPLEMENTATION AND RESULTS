@@ -1,0 +1,15 @@
+The proposed solar panel cleaning system is automatic and handmade.
+Simple architectural design is seen in this system including solar panel, cleaning shaft. 
+A 250W solar panel module is used here which provides an output voltage of 38V (open circuit voltage). 
+the output of the solar panel depends on the sunlight. A buck boost converter is used here to keep the output voltage constant.
+The output voltage of the converter is set at 12V dc. Therefore,
+the variation of the sunlight does not have any effect on the output voltage. 
+two reference lines are set for the movement of cleaning shaft/exhaust fan.
+Each line consists of 2 motors and wheels. When the sunlight comes out, 
+microcontroller and LDR measure the value and the whole system is 
+designed in such a way that the system will start its operation at the 
+beginning of the day typically between 10-11 am. Every morning, 
+the proposed system tracks the sunlight for starting its operation 
+even though there are no dust on the panel surface. Therefore, the proposed 
+system is effective for any types of dust. Fig. 2 shows the full experimental 
+setup of the proposed solar panel cleaner.
