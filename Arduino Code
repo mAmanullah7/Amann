@@ -1,0 +1,59 @@
+// Define pin numbers
+const int LDR_PIN = A0; // LDR sensor pin
+const int DUST_SENSOR_PIN = A1; // Dust sensor pin
+
+// Define threshold values
+const int LIGHT_THRESHOLD = 500; // LDR threshold value
+const int DUST_THRESHOLD = 100; // Dust thickness threshold
+
+// Motor pins
+const int BLOWER1_PIN = 7;
+const int BLOWER2_PIN = 8;
+const int DUSTER_PIN = 9;
+const int WHEEL_MOTOR1_PIN = 10;
+const int WHEEL_MOTOR2_PIN = 11;
+
+// Motor speed
+const int MOTOR_SPEED = 255; // Maximum speed
+
+void setup() {
+  // Setup pin modes
+  pinMode(LDR_PIN, INPUT);
+  pinMode(DUST_SENSOR_PIN, INPUT);
+  pinMode(BLOWER1_PIN, OUTPUT);
+  pinMode(BLOWER2_PIN, OUTPUT);
+  pinMode(DUSTER_PIN, OUTPUT);
+  pinMode(WHEEL_MOTOR1_PIN, OUTPUT);
+  pinMode(WHEEL_MOTOR2_PIN, OUTPUT);
+}
+
+void loop() {
+  // Read sensor values
+  int lightIntensity = analogRead(LDR_PIN);
+  int dustThickness = analogRead(DUST_SENSOR_PIN);
+
+  // Check if conditions are met
+  if (lightIntensity > LIGHT_THRESHOLD && dustThickness > DUST_THRESHOLD) {
+    // Activate wheel motors
+    analogWrite(WHEEL_MOTOR1_PIN, MOTOR_SPEED);
+    analogWrite(WHEEL_MOTOR2_PIN, MOTOR_SPEED);
+
+    // Activate blowers
+    analogWrite(BLOWER1_PIN, MOTOR_SPEED);
+    analogWrite(BLOWER2_PIN, MOTOR_SPEED);
+
+    // Activate duster motor
+    digitalWrite(DUSTER_PIN, HIGH);
+  } else {
+    // Stop wheel motors
+    analogWrite(WHEEL_MOTOR1_PIN, 0);
+    analogWrite(WHEEL_MOTOR2_PIN, 0);
+
+    // Stop blowers
+    analogWrite(BLOWER1_PIN, 0);
+    analogWrite(BLOWER2_PIN, 0);
+
+    // Stop duster motor
+    digitalWrite(DUSTER_PIN, LOW);
+  }
+}
